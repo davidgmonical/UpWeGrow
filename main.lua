@@ -39,18 +39,24 @@ if (not(exists)) then
   tablesetup = [[CREATE TABLE IF NOT EXISTS timeslots (id INTEGER PRIMARY KEY, date, timestart, timeend, gardener, landowner);]]
   db:exec( tablesetup )
 
-  -- Add rows with an auto index in 'id'. You don't need to specify a set of values because we're populating all of them.
-  local testvalue = {"Howard Roman", "Waterloo", "10", "I love plants"}
-  local tablefill = [[INSERT INTO gardeners VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[[',']]..testvalue[3]..[[',']]..testvalue[4]..[['); ]]
+--  -- Add rows with an auto index in 'id'. You don't need to specify a set of values because we're populating all of them.
+--  local testvalue = {"Howard Roman", "Waterloo", "10", "I love plants"}
+--  local tablefill = [[INSERT INTO gardeners VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[[',']]..testvalue[3]..[[',']]..testvalue[4]..[['); ]]
 
-  db:exec( tablefill )
+--  db:exec( tablefill )
   
-  testvalue = {"Shirley Gardener", "550 King St North, Conestoga Mall, Waterloo, ON N2L 5W6, Canada"}
-  tablefill = [[INSERT INTO landowners VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[['); ]]
+--  testvalue = {"Shirley Gardener", "550 King St North, Conestoga Mall, Waterloo, ON N2L 5W6, Canada"}
+--  tablefill = [[INSERT INTO landowners VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[['); ]]
 
-  db:exec( tablefill )
+--  db:exec( tablefill )
     
-  testvalue = {"5/18/20", "9:00", "12:00", "NULL", "NULL"}
+  testvalue = {"5/18/20", "9", "12", "NULL", "NULL"}
+  tablefill = [[INSERT INTO timeslots VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[[',']]..testvalue[3]..[[',']]..testvalue[4]..[[',']]..testvalue[5]..[['); ]]
+
+  db:exec( tablefill )  
+  
+  
+  testvalue = {"5/17/20", "12", "3", "NULL", "NULL"}
   tablefill = [[INSERT INTO timeslots VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[[',']]..testvalue[3]..[[',']]..testvalue[4]..[[',']]..testvalue[5]..[['); ]]
 
   db:exec( tablefill )  
@@ -65,4 +71,9 @@ Runtime:addEventListener( "system", onSystemEvent )
 
 local composer = require( "composer" )
 
-composer.gotoScene("ChooseRoleView")
+local signedIn = io.open(system.pathForFile("login.txt", system.DocumentsDirectory), 'r')
+if (signedIn) then
+  composer.gotoScene("HomeView", {params = {["role"] = "g"}})
+else
+  composer.gotoScene("ChooseRoleView")
+end

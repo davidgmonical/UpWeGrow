@@ -12,18 +12,8 @@ function scene:create(event)
   local logo = df:createDisplayText("GardenShare", "Gardena", 24, 0.5, 0, _W*0.5, 30, sceneGroup, false, {0, 0.3, 0})
 
   local line0 = df:createRect(_W, 1, 0, 0, 0, 60, {0, 0.3, 0}, sceneGroup)
-  
-  local impactText = df:createDisplayText("Your Impact", "Roboto-Black", 30, 0.5, 0, _W*0.5, _H*0.12, sceneGroup, false, {0.2, 0.2, 0.2})
-  
-  local plantedIcon = df:createDisplayImg("images/sprout-tree-svgrepo-com1.png", 70, 70, 0.5, 0.5, _W*0.5, _H*0.28, sceneGroup)
-  local plantedText = df:createDisplayText("50 plants", "paperdaisy-demo", 30, 0.5, 0, _W*0.5, _H*0.34, sceneGroup, false, {0.6, 0.6, 0.6})
-  
-  local peopleIcon = df:createDisplayImg("images/happy-man-svgrepo-com1.png", 70, 70, 0.5, 0.5, _W*0.5, _H*0.48, sceneGroup)
-  local peopleText = df:createDisplayText("50 people", "paperdaisy-demo", 30, 0.5, 0, _W*0.5, _H*0.54, sceneGroup, false, {0.6, 0.6, 0.6})
-
-  local gardensIcon = df:createDisplayImg("images/garden-svgrepo-com1.png", 70, 70, 0.5, 0.5, _W*0.5, _H*0.68, sceneGroup)
-  local gardensText = df:createDisplayText("10 gardens", "paperdaisy-demo", 30, 0.5, 0, _W*0.5, _H*0.74, sceneGroup, false, {0.6, 0.6, 0.6})
-
+    
+  local matches = df:createDisplayImg("images/matches.png", _W, _H-80, 0.5, 0.5, _W*0.5, _H*0.5-50, sceneGroup)
   
 end
 

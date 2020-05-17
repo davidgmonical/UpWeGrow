@@ -13,12 +13,7 @@ application = {
     },
     license =
     {
-        google =
-        {
-            mapsKey = "AIzaSyBoQajaQUvbRsSxEYK036WJlN1ZnP0TzSc",
-            key ="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtK+fVSMCqnn7QnRN6uS1CM3LFR1pExNzolN8UnIT1wdHC2gawfcVTBjyCijRRkQz+pYf6gSBvZzdAfjwddbRwnU8ZoEVkq13vlGNek49vcIMrksdrKThjsYN9wUbagfiOvrJyg0c9t7a2/ouBExORbXM6KZzVtmVajUIZFdZ+aNXjXDatsled78sy7Nfjq0DExRJqtHjXLp6yaBnSQhVQ3QZTnZQP6ziZZBKHJNM3z4wtZvbDs7qXmEAf+fcSt4x/6NML3PgSBQpieEvZMZwIbfiYQKRqQZsWFTG5Ls8j6ixyKrGbgTD3dj8moxGa3S88xTVy1S6AZRFywQDoCM0UQIDAQAB"
-            
-        },
+       
     },
 }
 if (not (display.screenOriginX == display.safeScreenOriginX and 
