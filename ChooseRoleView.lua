@@ -14,7 +14,7 @@ function scene:create(event)
   local sceneGroup = self.view
   local bg = df:createRect(_W, _H, 0, 0, 0, 0, {1, 1, 1}, sceneGroup)
   
-  local logo = df:createDisplayText("GardenShare", "Gardena", 50, 0.5, 0, _W*0.5, 56, sceneGroup, false, {0, 0.3, 0})
+  local logo = df:createDisplayText("Up We Grow", "Gardena", 50, 0.5, 0, _W*0.5, 56, sceneGroup, false, {0, 0.3, 0})
   
   --local line0 = df:createRect(_W, 1, 0, 0, 0, 74, {0, 0.3, 0}, sceneGroup)
 
@@ -23,13 +23,13 @@ function scene:create(event)
 
   
   onGardenerTap = function(e)
-    composer.gotoScene("SignUpView", {params={["role"]="g"}})
+    composer.gotoScene("MessageView", {params={["role"]="g"}})
     
   end
     
   onLandownerTap = function(e)
       
-    composer.gotoScene("SignUpView", {params={["role"]="l"}})
+    composer.gotoScene("MessageView", {params={["role"]="l"}})
       
   end
   
@@ -129,6 +129,34 @@ function scene:create(event)
     landscapeButton.anchorX = 0.5
     landscapeButton.anchorY = 0.5
     sceneGroup:insert(landscapeButton)
+    
+    
+    local onLoginTap = function(e)
+      
+      if (e.phase == "ended") then
+        
+        composer.gotoScene("LoginView")
+        
+      end
+      
+    end
+    
+    local loginButton = widget.newButton
+        {
+        onRelease = onLoginTap,
+        textOnly = true,
+        label = "or login",
+        labelColor = { default={0.5, 0.5, 0.5}, over={ 0, 0, 0, 0.5 } },
+        font = "paperdaisy-demo",
+        fontSize = 32
+    
+    }
+    loginButton.x = _W*0.5
+    loginButton.y = landscapeButton.y + 60
+    loginButton.anchorX = 0.5
+    loginButton.anchorY = 0.5
+    loginButton.alpha = 0.9
+    sceneGroup:insert(loginButton)
     
   
 end

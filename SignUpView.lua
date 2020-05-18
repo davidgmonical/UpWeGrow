@@ -6,6 +6,7 @@ local scene = composer.newScene()
 
 local onGardenerTap
 local onLandownerTap
+local done
 
 function scene:create(event)
   
@@ -70,6 +71,8 @@ function scene:create(event)
   
   local field
   
+  local onTap
+  
   local function populateNext()
     
     curQuestionIndex = curQuestionIndex + 1
@@ -122,15 +125,17 @@ function scene:create(event)
       end
       
       if (event.params.role == "g") then
-        local testvalue = {answers[1], answers[2], answers[3], answers[4]}
-        local tablefill = [[INSERT INTO gardeners VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[[',']]..testvalue[3]..[[',']]..testvalue[4]..[['); ]]
+--        local testvalue = {answers[1], answers[2], answers[3], answers[4]}
+--        local tablefill = [[INSERT INTO gardeners VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[[',']]..testvalue[3]..[[',']]..testvalue[4]..[['); ]]
 
-        db:exec( tablefill )
+--        db:exec( tablefill )
+        data:createGardener(answers[1], answers[2], answers[3], answers[4], answers[5], answers[6])
       else
-        local testvalue = {answers[1], answers[2]}
-        local tablefill = [[INSERT INTO landowners VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[['); ]]
+--        local testvalue = {answers[1], answers[2]}
+--        local tablefill = [[INSERT INTO landowners VALUES (NULL, ']]..testvalue[1]..[[',']]..testvalue[2]..[['); ]]
 
-        db:exec( tablefill )
+--        db:exec( tablefill )
+        data:createLandowner(answers[1], answers[2], answers[3], answers[4])
       end
       local path = system.pathForFile("login.txt", system.DocumentsDirectory)
       local f = io.open(path, 'w')
@@ -138,9 +143,10 @@ function scene:create(event)
       f:close()
       f = nil
       
+      done = true
       
-      composer.gotoScene("HomeView", {params={["role"]=event.params.role}})
-    
+      timer.performWithDelay(1, function() composer.gotoScene("HomeView", {params={["role"]=event.params.role}}) end, 1)
+
     end
     
     
@@ -148,8 +154,9 @@ function scene:create(event)
   
   populateNext()
 
-  local function onTap(e)
-    if (e.phase == "ended") then
+  function onTap(e)
+    
+    if (e.phase == "ended" and not(done)) then
       if (field) then
         answers[#answers + 1] = field.text
       end
@@ -162,7 +169,7 @@ function scene:create(event)
     end
   end
 
-  Runtime:addEventListener("touch", onTap)
+  bg:addEventListener("touch", onTap)
   
 end
 
